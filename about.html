@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Обо мне — Анастасия</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand"><div class="brand-mark">AK</div><div class="brand-text"><div class="brand-title">Ваш психолог Анастасия</div><div class="brand-subtitle">психолог-психотерапевт</div></div></div>
+        <nav class="nav"><button class="nav-toggle" aria-label="Меню"></button><ul class="nav-list">
+            <li><a href="index.html">Главная</a></li><li><a class="active" href="about.html">Обо мне</a></li>
+            <li><a href="education.html">Образование</a></li><li><a href="services.html">Услуги</a></li><li><a href="pricing.html">Цены</a></li><li><a href="reviews.html">Отзывы</a></li><li><a href="notes.html">Заметки</a></li>
+        </ul></nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container grid grid-2">
+        <div class="card"><img class="portrait" src="images/anastasiya.jpg" alt="Анастасия — психолог"></div>
+        <div class="card">
+            <h1>Обо мне</h1>
+            <p>Приветствую Вас, меня зовут Анастасия,
+                и я дипломированный клинический психолог, психоаналитик, сексолог. Предлагаю Вам помощь в различных жизненных ситуациях.
+                Используя психоаналитические методы, мы исследуем тайны бессознательного, а благодаря логотерапевтическому подходу, поищем личные ответы на вечные экзистенциальные вопросы, в индивидуальном порядке рассмотрим тонкости сексуальной жизни, самоидентификации, взаимоотношений с партнером.</p>
+            <p>При необходимости поработаем над расстройствами пищевого поведения, обсудим диету.
+                Проясним мысли и чувства, подберем конструктивные решения, расширим угол обзора на трудности, обнаружим выходы из тупиков, а главное – в целом повысим удовлетворенность и качество Вашей жизни!
+                Сохраняя Вашу ответственность, я научу Вас помогать самому себе, находить подходящие варианты и ответы, лучше узнать и понять себя, отказаться от стереотипов и нащупать свой собственный путь к счастью и легкости.
+                Ключевые понятия для нашей совместной работы – это баланс, гармония, осмысленность и разумность, ответственность, границы, свобода и полнота жизни.
+                Предлагаю не откладывать на завтра то, что мешает Вам жить сегодня! Победим Ваши тревоги вместе!</p>
+
+            <div class="grid" style="margin-top:12px">
+                <a class="btn" href="services.html">Услуги</a>
+                <a class="btn btn-light" href="pricing.html">Цены</a>
+                <a class="btn btn-light" href="education.html">Образование</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer"><div class="container footer-inner"><div>© <span id="year"></span> Анастасия</div><a class="muted" href="privacy.html">Политика конфиденциальности</a></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();document.querySelector('.nav-toggle').onclick=()=>document.querySelector('.nav-list').classList.toggle('open');</script>
+</body>
+</html>

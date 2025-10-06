@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Образование — Анастасия</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand"><div class="brand-mark">AK</div><div class="brand-text"><div class="brand-title">Ваш психолог Анастасия</div><div class="brand-subtitle">психолог-психотерапевт</div></div></div>
+        <nav class="nav"><button class="nav-toggle" aria-label="Меню"></button><ul class="nav-list">
+            <li><a href="index.html">Главная</a></li><li><a href="about.html">Обо мне</a></li>
+            <li><a class="active" href="education.html">Образование</a></li><li><a href="services.html">Услуги</a></li><li><a href="pricing.html">Цены</a></li><li><a href="reviews.html">Отзывы</a></li><li><a href="notes.html">Заметки</a></li>
+        </ul></nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <h1>Образование</h1>
+
+        <div class="card">
+            <p>Мой путь в профессию был не линейным, но осознанным. Я хорошо училась в школе, выигрывала олимпиады, закончила школу экстерном и заочную матшколу СПбГУ. Первым выбором стала клиническая психология СПбГУ — затем жизненный виток, опыт управления и бизнеса (РГГУ: «Гос. и муниципальное управление», «Финансы и кредит», путь от менеджера до финансового/генерального директора).</p>
+            <p>Дальше — возвращение к призванию: профессиональная переподготовка по клинической психологии (1500 часов) с практикой на базе Психиатрической клинической больницы №4 им. П.Б. Ганнушкина. Магистратура «Психология» со специализацией «Прикладной психоанализ и психоаналитическое консультирование» (диссертация: «Психолого-психоаналитическое исследование сексуальных дисфункций у женщин, страдающих женскими заболеваниями»).</p>
+            <p>Право работать в сфере сексологии подтверждено отдельной профпереподготовкой. Личный анализ у проф. Лейбина В.М. (МИП), регулярные курсы повышения квалификации и участие в профильных конференциях. Разностороннее образование и опыт менеджмента усиливают мою практику и дают широкий угол зрения на запросы клиента.</p>
+            <p><a class="btn" href="https://disk.yandex.ru/i/TG8UHGM1UTVGPg" target="_blank" rel="noopener">Читать диссертацию &rarr;</a></p>
+        </div>
+
+        <h2 style="margin-top:28px">Дипломы и сертификаты</h2>
+        <div class="rail">
+            <div class="rail-track">
+                <img src="images/hero/1.jpg" alt="">
+                <img src="images/hero/2.jpg" alt="">
+                <img src="images/hero/3.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer"><div class="container footer-inner"><div>© <span id="year"></span> Анастасия</div><a class="muted" href="privacy.html">Политика конфиденциальности</a></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();document.querySelector('.nav-toggle').onclick=()=>document.querySelector('.nav-list').classList.toggle('open');</script>
+</body>
+</html>

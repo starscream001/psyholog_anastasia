@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Отзывы — Анастасия</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand"><div class="brand-mark">AK</div><div class="brand-text"><div class="brand-title">Ваш психолог Анастасия</div><div class="brand-subtitle">психолог-психотерапевт</div></div></div>
+        <nav class="nav"><button class="nav-toggle" aria-label="Меню"></button><ul class="nav-list">
+            <li><a href="index.html">Главная</a></li><li><a href="about.html">Обо мне</a></li><li><a href="education.html">Образование</a></li><li><a href="services.html">Услуги</a></li><li><a href="pricing.html">Цены</a></li>
+            <li><a class="active" href="reviews.html">Отзывы</a></li><li><a href="notes.html">Заметки</a></li>
+        </ul></nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <h1>Отзывы</h1>
+        <div class="grid grid-3">
+            <div class="card"><h3>Вера К.</h3><p>…После 25 лет брака случился развод. Этот тяжелейший стресс привёл к глубокой депрессии. Анастасия работала со мной около года. Ко мне постепенно вернулась радость жизни. Спасибо!</p></div>
+            <div class="card"><h3>Юлия С.</h3><p>…После одного расширенного сеанса увидела паттерн «приношения себя в жертву». Через пару дней прошли симптомы гастрита без медикаментов. Спасибо за квалифицированную помощь!</p></div>
+            <div class="card"><h3>Игорь</h3><p>Снизилась тревога, вернулся сон. Работа перестала «съедать» жизнь.</p></div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer"><div class="container footer-inner"><div>© <span id="year"></span> Анастасия</div><a class="muted" href="privacy.html">Политика конфиденциальности</a></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();document.querySelector('.nav-toggle').onclick=()=>document.querySelector('.nav-list').classList.toggle('open');</script>
+</body>
+</html>

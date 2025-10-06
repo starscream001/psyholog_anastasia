@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Анастасия Келина — Психолог-психотерапевт</title>
+    <meta name="description" content="Экзистенциальная психотерапия. Индивидуальная и парная работа. Санкт-Петербург и онлайн.">
+    <meta name="theme-color" content="#0f2a22">
+    <style>
+        :root{--bg:#0a0a0a;--fg:#e7efe9;--primary:#1f5c49;--primary-2:#154537;--accent:#c3a56b;--muted:#9aa7a0;--maxw:1040px;--radius:16px;--shadow:0 8px 28px rgba(0,0,0,.35)}
+        *{box-sizing:border-box} html{scroll-behavior:smooth}
+        body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;color:var(--fg);background:linear-gradient(180deg,#0a0a0a 0%, #0c1110 60%, #0a0a0a 100%)}
+        a{color:inherit;text-decoration:none} .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+        header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(10,10,10,.75);border-bottom:1px solid rgba(195,165,107,.12)}
+        .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+        .logo{font-weight:700;letter-spacing:.3px}.logo b{color:var(--accent)}
+        .menu{display:flex;gap:20px}
+        .menu a{padding:8px 10px;border-radius:999px;color:var(--fg);opacity:.9}
+        .menu a:hover{background:rgba(31,92,73,.25)}
+        .burger{display:none;width:40px;height:40px;border:1px solid rgba(231,239,233,.15);border-radius:10px;background:transparent;color:var(--fg)}
+        .drawer{display:none;position:fixed;inset:64px 0 auto 0;background:#0b0f0e;border-top:1px solid rgba(195,165,107,.15);box-shadow:var(--shadow)}
+        .drawer a{display:block;padding:14px 20px;border-bottom:1px solid rgba(231,239,233,.06)} .drawer.open{display:block}
+
+        .hero{padding:86px 0 28px;background:radial-gradient(1200px 400px at 50% -200px, rgba(31,92,73,.35), transparent 60%)}
+        .h1{font-size:40px;line-height:1.15;margin:0 0 14px}
+        .lead{color:var(--muted);max-width:720px;margin:0 0 28px}
+        .cta{display:flex;gap:12px;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;background:var(--primary);color:#fff;border:1px solid rgba(231,239,233,.08);box-shadow:0 6px 18px rgba(31,92,73,.28);transition:.15s}
+        .btn:hover{background:var(--primary-2);transform:translateY(-1px)} .btn.outline{background:transparent;color:var(--fg)}
+        .chip{display:inline-block;padding:6px 10px;border:1px solid rgba(231,239,233,.12);border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:12px}
+        section{padding:72px 0;border-top:1px solid rgba(231,239,233,.06)}
+        h2{font-size:28px;margin:0 0 18px} .grid{display:grid;gap:18px}
+        .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+        .card{background:rgba(255,255,255,.02);border:1px solid rgba(231,239,233,.07);border-radius:var(--radius);padding:18px;min-height:120px}
+        .muted{color:var(--muted)} .kicker{color:var(--accent);letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+
+        /* ГАЛЕРЕЯ */
+        .hero-strip{display:grid;grid-auto-flow:column;gap:10px;overflow:auto;padding-bottom:8px;margin-top:18px}
+        .hero-strip img{height:110px;object-fit:cover;border-radius:12px;border:1px solid rgba(231,239,233,.06)}
+        .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+        .gallery img{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid rgba(231,239,233,.07)}
+
+        details{border:1px solid rgba(231,239,233,.08);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)} details+details{margin-top:10px}
+        summary{cursor:pointer;font-weight:600}
+        .reviews{display:grid;gap:14px} .review{padding:14px;border:1px solid rgba(231,239,233,.07);border-radius:12px;background:rgba(255,255,255,.02)}
+        .article{display:flex;gap:14px;padding:14px;border:1px solid rgba(231,239,233,.07);border-radius:12px}
+        .article .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);margin-top:8px}
+        footer{padding:36px 0 120px;color:var(--muted)} .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+        .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;background:#0b0f0e;border-top:1px solid rgba(195,165,107,.18);padding:10px 12px}
+        .mobile-bar .btn{flex:1;justify-content:center;padding:12px}
+        @media (max-width:960px){.cards,.gallery{grid-template-columns:1fr}}
+        @media (max-width:860px){.menu{display:none}.burger{display:inline-grid;place-items:center}.h1{font-size:32px}footer{padding-bottom:84px}.mobile-bar{display:flex;gap:10px}}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="wrap nav">
+        <div class="logo">Анастасия <b>Келина</b></div>
+        <nav class="menu" aria-label="Главное меню">
+            <a href="#help">С чем помогаю</a>
+            <a href="#approach">Подход</a>
+            <a href="#formats">Форматы и цена</a>
+            <a href="#faq">FAQ</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#articles">Заметки</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <button class="burger" id="burger" aria-label="Открыть меню">☰</button>
+    </div>
+    <div class="drawer" id="drawer">
+        <a href="#help">С чем помогаю</a><a href="#approach">Подход</a><a href="#formats">Форматы и цена</a>
+        <a href="#faq">FAQ</a><a href="#reviews">Отзывы</a><a href="#articles">Заметки</a><a href="#contacts">Контакты</a>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="wrap">
+            <span class="chip">Экзистенциальная психотерапия • Санкт-Петербург / онлайн</span>
+            <h1 class="h1">Помогаю выбраться из тупика, услышать себя и опираться на своё.</h1>
+            <p class="lead">Работаю бережно и по-взрослому: смысл, ответственность, шаги. Индивидуально и для пар. Без общих рецептов — ваш запрос всегда уникален.</p>
+            <div class="cta">
+                <a class="btn" href="https://t.me/username" target="_blank" rel="noopener">Написать в Telegram</a>
+                <a class="btn outline" href="#formats">Форматы и цена</a>
+            </div>
+
+            <!-- узкая галерея вверху -->
+            <div class="hero-strip" aria-label="Фото">
+                <img src="img/hero-1.jpg" alt="Кабинет"/>
+                <img src="img/hero-2.jpg" alt="Деталь интерьера"/>
+                <img src="img/hero-3.jpg" alt="Рабочее место"/>
+                <img src="img/hero-4.jpg" alt="Городской пейзаж"/>
+            </div>
+        </div>
+    </section>
+
+    <section id="help">
+        <div class="wrap">
+            <div class="kicker">С чем помогаю</div>
+            <h2>Запросы, с которыми ко мне приходят</h2>
+            <div class="grid cards">
+                <div class="card"><b>Тревога и выгорание.</b><br>Когда «всё держу на себе», сложно отдыхать и радоваться, а мысли крутятся по кругу.</div>
+                <div class="card"><b>Отношения и близость.</b><br>Партнёрство, границы, повторяющиеся сценарии, одиночество.</div>
+                <div class="card"><b>Кризисы и утраты.</b><br>Потеря смысла, перемены, новые роли, ощущение «я себя не узнаю».</div>
+                <div class="card"><b>Самооценка и опора на себя.</b><br>Страх ошибки, «не могу выбрать», перфекционизм, чувство вины и стыда.</div>
+                <div class="card"><b>Сексуальность и близость.</b><br>Снижение влечения, сложности в сексуальной коммуникации у одиночек и пар.</div>
+                <div class="card"><b>Проф. запросы.</b><br>Выбор и изменения в работе, выгорание, управление нагрузкой.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach">
+        <div class="wrap">
+            <div class="kicker">Подход</div>
+            <h2>Коротко о том, как мы работаем</h2>
+            <p class="muted">
+                Экзистенциальная психотерапия — про личный смысл, свободу выбора и ответственность за свою жизнь.
+                Мы исследуем переживания «здесь и сейчас», ваши ценности и способы быть с собой и другими.
+                Я помогаю замечать перекрёстки, на которых вы делаете выбор, и возвращать себе опору.
+            </p>
+            <div class="grid gallery" style="margin-top:18px">
+                <img src="img/g-1.jpg" alt="Фото кабинета">
+                <img src="img/g-2.jpg" alt="Деталь интерьера">
+                <img src="img/g-3.jpg" alt="Город">
+            </div>
+        </div>
+    </section>
+
+    <section id="formats">
+        <div class="wrap">
+            <div class="kicker">Форматы</div>
+            <h2>Индивидуально и для пар</h2>
+            <div class="grid cards">
+                <div class="card"><b>Индивидуальная встреча</b><br>50 минут · очно/онлайн.<br><span class="muted">Стоимость уточним при записи.</span></div>
+                <div class="card"><b>Парная терапия</b><br>80 минут · очно/онлайн.<br><span class="muted">Подходит для пар в кризисе и для усиления близости.</span></div>
+                <div class="card"><b>Знакомство</b><br>15–20 минут онлайн · бесплатно.<br><span class="muted">Чтобы понять, подойдём ли мы друг другу и как лучше начать.</span></div>
+            </div>
+            <p class="muted">Запись через сайт не используем — пишите в мессенджер или позвоните, так быстрее и проще согласовать время.</p>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="wrap">
+            <div class="kicker">Вопросы</div>
+            <h2>FAQ</h2>
+            <details><summary>Сколько встреч потребуется?</summary><div class="muted">Зависит от запроса: кому-то достаточно 6–10 встреч для решения конкретной задачи, а для работы с глубинными темами мы договариваемся о длительной терапии.</div></details>
+            <details><summary>Как проходит первая встреча?</summary><div class="muted">Мы формулируем запрос, обсуждаем формат и правила работы, намечаем первые шаги.</div></details>
+            <details><summary>Как отменить/перенести?</summary><div class="muted">Отмена не позже чем за 24 часа. При более поздней отмене встреча считается состоявшейся.</div></details>
+            <details><summary>Работаете ли вы онлайн?</summary><div class="muted">Да, по защищённой связи. География — любая.</div></details>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="wrap">
+            <div class="kicker">Отзывы</div>
+            <h2>Что говорят клиенты</h2>
+            <div class="reviews">
+                <div class="review">«Появилось ощущение внутренней опоры и ясности. Стало проще говорить о важном и не избегать решений.»</div>
+                <div class="review">«Мы пришли парой на грани расставания. За несколько месяцев научились слышать друг друга и договариваться.»</div>
+                <div class="review">«Снизилась тревога, вернулся сон. Усталость на работе больше не «съедает» мою жизнь.»</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articles">
+        <div class="wrap">
+            <div class="kicker">Заметки</div>
+            <h2>Мысли и статьи</h2>
+            <div class="grid">
+                <a class="article" href="articles/1.html"><span class="dot"></span>
+                    <div><b>Когда решение откладывается</b><div class="muted">Что мешает сделать шаг и как вернуть себе выбор.</div></div>
+                </a>
+                <a class="article" href="articles/2.html"><span class="dot"></span>
+                    <div><b>Границы без конфликта</b><div class="muted">Как говорить «да/нет» и оставаться в контакте.</div></div>
+                </a>
+            </div>
+            <p class="muted" style="margin-top:10px">Полные тексты — на отдельных страницах. Это лучше для чтения и SEO.</p>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="wrap">
+            <div class="kicker">Контакты</div>
+            <h2>Связаться</h2>
+            <p>Telegram: <a href="https://t.me/username">@username</a> · WhatsApp: <a href="https://wa.me/70000000000">+7 000 000-00-00</a><br>
+                Email: <a href="mailto:mail@example.com">mail@example.com</a> · Тел.: <a href="tel:+70000000000">+7 000 000-00-00</a></p>
+            <p class="muted">Приём: Санкт-Петербург / онлайн.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap foot">
+        <div>© <span id="y"></span> Анастасия Келина</div>
+        <div><a href="#">Политика конфиденциальности</a></div>
+    </div>
+</footer>
+
+<div class="mobile-bar">
+    <a class="btn" href="https://wa.me/70000000000" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn" href="https://t.me/username" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn outline" href="tel:+70000000000">Позвонить</a>
+</div>
+
+<script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const burger=document.getElementById('burger'),drawer=document.getElementById('drawer');
+    burger.addEventListener('click',()=>drawer.classList.toggle('open'));
+    drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+    const links=[...document.querySelectorAll('header .menu a'),...drawer.querySelectorAll('a')];
+    const ids=links.map(a=>a.getAttribute('href')).filter(h=>h.startsWith('#'));
+    const sections=ids.map(id=>document.querySelector(id));
+    const setActive=()=>{let idx=0,y=window.scrollY+120;sections.forEach((s,i)=>{if(s&&s.offsetTop<=y)idx=i});links.forEach(l=>l.style.opacity='.7');const href=sections[idx]?'#'+sections[idx].id:null;links.filter(l=>l.getAttribute('href')===href).forEach(l=>l.style.opacity='1')};
+    setActive(); addEventListener('scroll',setActive);
+</script>
+</body>
+</html>

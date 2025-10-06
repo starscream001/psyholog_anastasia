@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Политика конфиденциальности</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="privacy">
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand-mark">AK</div>
+            <div class="brand-text">
+                <div class="brand-title">Ваш психолог Анастасия</div>
+                <div class="brand-subtitle">психолог-психотерапевт</div>
+            </div>
+        </div>
+        <nav class="nav">
+            <button class="nav-toggle" aria-label="Меню"></button>
+            <ul class="nav-list">
+                <li><a href="index.html">Главная</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container narrow">
+        <h1>Политика конфиденциальности</h1>
+        <p class="muted tiny">Обновлено: <span id="pdate"></span></p>
+
+        <details open class="policy-block">
+            <summary>1. Общие положения</summary>
+            <div>
+                <p>Я уважаю ваше право на приватность. На этой странице описано, какие данные собираются на сайте, для чего и как они защищены.</p>
+            </div>
+        </details>
+
+        <details class="policy-block">
+            <summary>2. Какие данные обрабатываются</summary>
+            <div>
+                <ul class="bullets">
+                    <li>Контактные данные из формы заявки (имя, телефон/ник в мессенджере).</li>
+                    <li>Технические данные, автоматически передаваемые браузером (IP, cookies и т.п.).</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="policy-block">
+            <summary>3. Цели обработки</summary>
+            <div>
+                <p>Связь с вами по заявке, согласование времени консультации, улучшение работы сайта.</p>
+            </div>
+        </details>
+
+        <details class="policy-block">
+            <summary>4. Передача третьим лицам</summary>
+            <div>
+                <p>Данные не передаю третьим лицам, за исключением случаев, предусмотренных законодательством РФ.</p>
+            </div>
+        </details>
+
+        <details class="policy-block">
+            <summary>5. Хранение и защита</summary>
+            <div>
+                <p>Доступ к данным ограничен. Срок хранения — не дольше, чем это необходимо для целей обработки.</p>
+            </div>
+        </details>
+
+        <details class="policy-block">
+            <summary>6. Права пользователя</summary>
+            <div>
+                <p>Вы можете запросить доступ к своим данным, их актуализацию, уточнение или удаление, написав в Telegram
+                    <a href="https://t.me/Anastasiya_Kelina" target="_blank" rel="noopener">@Anastasiya_Kelina</a>.
+                </p>
+            </div>
+        </details>
+
+        <details class="policy-block">
+            <summary>7. Контакты оператора</summary>
+            <div>
+                <p>Тел.: <a href="tel:+79213003055">+7 921 300-30-55</a><br>
+                    Telegram: <a href="https://t.me/Anastasiya_Kelina" target="_blank" rel="noopener">@Anastasiya_Kelina</a></p>
+            </div>
+        </details>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div>© <span id="year"></span> Анастасия</div>
+        <a class="muted" href="index.html">На главную</a>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('pdate').textContent = new Date().toLocaleDateString('ru-RU');
+    document.querySelector('.nav-toggle').addEventListener('click',()=>{
+        document.querySelector('.nav-list').classList.toggle('open');
+    });
+</script>
+</body>
+</html>
