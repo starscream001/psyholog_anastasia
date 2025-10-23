@@ -1,163 +1,279 @@
-// main.js — бургер, аккордеоны, управление "слайдерами"
-document.addEventListener('DOMContentLoaded', () => {
-    // ===== Burger / Drawer =====
-    const header = document.querySelector('.header');
-    const btn = document.querySelector('.menu-btn');
-    const menu = document.querySelector('.menu');
-    // создаём Drawer из текущего меню
-    let drawer = document.querySelector('.menu--drawer');
-    if (!drawer) {
-        drawer = document.createElement('nav');
-        drawer.className = 'menu menu--drawer';
-        drawer.setAttribute('aria-label', 'Меню (мобильно)');
-        drawer.innerHTML = `<ul class="menu__list">${menu.querySelector('.menu__list').innerHTML}</ul>`;
-        header.after(drawer);
-    }
-    // фон-маска
-    let mask = document.querySelector('.drawer-mask');
-    if (!mask) {
-        mask = document.createElement('div');
-        mask.className = 'drawer-mask';
-        document.body.append(mask);
-    }
+// main.js — меню, слайдер, дипломы (лайтбокс)
+(function () {
+    'use strict';
 
-    const openDrawer = () => {
-        drawer.classList.add('menu--open');
-        mask.classList.add('drawer-mask--show');
-        btn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-    };
-    const closeDrawer = () => {
-        drawer.classList.remove('menu--open');
-        mask.classList.remove('drawer-mask--show');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    };
-
-    btn?.addEventListener('click', () => {
-        drawer.classList.contains('menu--open') ? closeDrawer() : openDrawer();
-    });
-    mask.addEventListener('click', closeDrawer);
-    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) closeDrawer();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeDrawer();
+    document.addEventListener('DOMContentLoaded', () => {
+        initMobileDrawer();
+        initHeroSlider();
+        initDiplomaLightbox();
     });
 
-    // ===== Active link on scroll (простая подсветка) =====
-    const links = [...document.querySelectorAll('.menu a[href^="#"]')];
-    const ids = links.map(a => a.getAttribute('href')).filter(Boolean);
-    const sections = ids.map(id => document.querySelector(id));
-    const setActive = () => {
-        let i = 0, y = window.scrollY + 120;
-        sections.forEach((s, idx) => { if (s && s.offsetTop <= y) i = idx; });
-        links.forEach(l => l.classList.remove('menu__list-link--active'));
-        const activeHref = sections[i] ? '#' + sections[i].id : null;
-        links.filter(l => l.getAttribute('href') === activeHref)
-            .forEach(l => l.classList.add('menu__list-link--active'));
-    };
-    setActive(); window.addEventListener('scroll', setActive);
+    /* =========================
+       1) Mobile Drawer Menu
+    ========================= */
+    function initMobileDrawer() {
+        const header = document.querySelector('.header') || document.querySelector('.site-header');
+        const btn = document.querySelector('.menu-btn');
+        const menu = document.querySelector('.menu');
+        if (!header || !btn || !menu) return;
 
-    // ===== Accordions (FAQ + Политика) =====
-    const accordions = document.querySelectorAll('.program-accordion');
-    // по умолчанию — свёрнуты
-    accordions.forEach(acc => {
-        acc.classList.remove('open');
-        const info = acc.querySelector('.program-accordion__info');
-        const content = acc.querySelector('.program-accordion__content');
-        info.setAttribute('role', 'button');
-        info.setAttribute('tabindex', '0');
-        info.setAttribute('aria-expanded', 'false');
-        content.setAttribute('aria-hidden', 'true');
-
-        const toggle = () => {
-            const isOpen = acc.classList.toggle('open');
-            info.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            content.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-            // плавный height
-            if (isOpen) {
-                content.style.display = 'block';
-                const h = content.scrollHeight;
-                content.style.height = '0px';
-                requestAnimationFrame(() => {
-                    content.style.height = h + 'px';
-                });
-                content.addEventListener('transitionend', () => {
-                    if (acc.classList.contains('open')) {
-                        content.style.height = 'auto';
-                    }
-                }, { once: true });
-            } else {
-                const h = content.scrollHeight;
-                content.style.height = h + 'px';
-                requestAnimationFrame(() => {
-                    content.style.height = '0px';
-                });
-                content.addEventListener('transitionend', () => {
-                    if (!acc.classList.contains('open')) {
-                        content.style.display = 'none';
-                    }
-                }, { once: true });
-            }
-        };
-
-        info.addEventListener('click', toggle);
-        info.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-        });
-        // стартовое состояние: ПОЛИТИКА свёрнута, FAQ — можно раскрыть первый пункт
-        const parentSection = acc.closest('#faq, #policy');
-        if (parentSection && parentSection.id === 'faq') {
-            // раскрываем только первый в FAQ
-            const isFirst = acc === parentSection.querySelector('.program-accordion');
-            if (isFirst) {
-                acc.classList.add('open');
-                info.setAttribute('aria-expanded', 'true');
-                content.setAttribute('aria-hidden', 'false');
-                content.style.display = 'block';
-            }
+        let drawer = document.querySelector('.menu--drawer');
+        if (!drawer) {
+            drawer = document.createElement('nav');
+            drawer.className = 'menu menu--drawer';
+            drawer.setAttribute('aria-label', 'Меню (мобильно)');
+            const src = menu.querySelector('.menu__list') || menu;
+            drawer.innerHTML = `<ul class="menu__list">${src.innerHTML}</ul>`;
+            header.after(drawer);
         }
-        // policy остаётся закрытой — как просил
-    });
 
-    // ===== Sliders: добавим стрелки прокрутки =====
-    const sliders = document.querySelectorAll('.slider');
-    sliders.forEach(sl => {
-        // создаём контейнер для стрелок
-        const wrap = document.createElement('div');
-        wrap.className = 'slider-wrap';
-        sl.parentNode.insertBefore(wrap, sl);
-        wrap.appendChild(sl);
+        let mask = document.querySelector('.drawer-mask');
+        if (!mask) {
+            mask = document.createElement('div');
+            mask.className = 'drawer-mask';
+            document.body.append(mask);
+        }
 
-        const prev = document.createElement('button');
-        prev.className = 'slider-nav slider-nav--prev';
-        prev.setAttribute('aria-label', 'Назад');
-        prev.innerHTML = '‹';
-
-        const next = document.createElement('button');
-        next.className = 'slider-nav slider-nav--next';
-        next.setAttribute('aria-label', 'Вперёд');
-        next.innerHTML = '›';
-
-        wrap.append(prev, next);
-
-        const step = () => Math.max(280, Math.floor(wrap.clientWidth * 0.9));
-
-        prev.addEventListener('click', () => {
-            sl.scrollBy({ left: -step(), behavior: 'smooth' });
-        });
-        next.addEventListener('click', () => {
-            sl.scrollBy({ left: step(), behavior: 'smooth' });
-        });
-
-        // показать/скрыть стрелки если контента меньше ширины
-        const check = () => {
-            const need = sl.scrollWidth > sl.clientWidth + 8;
-            wrap.classList.toggle('slider-wrap--nav', need);
+        const open = () => {
+            drawer.classList.add('open');
+            mask.classList.add('drawer-mask--show');
+            document.body.style.overflow = 'hidden';
+            btn.setAttribute('aria-expanded', 'true');
         };
-        check();
-        window.addEventListener('resize', check);
-    });
-});
+        const close = () => {
+            drawer.classList.remove('open');
+            mask.classList.remove('drawer-mask--show');
+            document.body.style.overflow = '';
+            btn.setAttribute('aria-expanded', 'false');
+        };
+
+        btn.addEventListener('click', () =>
+            drawer.classList.contains('open') ? close() : open()
+        );
+        mask.addEventListener('click', close);
+        drawer.addEventListener('click', (e) => {
+            if (e.target.closest('a')) close();
+        });
+        window.addEventListener('resize', () => {
+            if (innerWidth > 960) close();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+        });
+    }
+
+    /* =========================
+       2) Hero Slider (autoplay + swipe)
+       Markup: .hero .slider > .slide.current  (img или background)
+       Data: data-autoplay="true" data-interval="6000"
+    ========================= */
+    function initHeroSlider() {
+        const root = document.querySelector('.hero .slider');
+        if (!root) return;
+
+        const slides = Array.from(root.querySelectorAll('.slide'));
+        if (!slides.length) return;
+
+        let i = slides.findIndex((s) => s.classList.contains('current'));
+        if (i < 0) {
+            i = 0;
+            slides[0].classList.add('current');
+        }
+
+        // controls
+        const ensureBtn = (cls, label, text) => {
+            let b = root.querySelector(`.slider-btn.${cls}`);
+            if (!b) {
+                b = document.createElement('button');
+                b.className = `slider-btn ${cls}`;
+                b.setAttribute('aria-label', label);
+                b.textContent = text;
+                root.appendChild(b);
+            }
+            return b;
+        };
+        const prevBtn = ensureBtn('prev', 'Предыдущий слайд', '‹');
+        const nextBtn = ensureBtn('next', 'Следующий слайд', '›');
+
+        // dots
+        let dots = root.querySelector('.slider-dots');
+        if (!dots) {
+            dots = document.createElement('div');
+            dots.className = 'slider-dots';
+            root.appendChild(dots);
+        }
+        function buildDots() {
+            dots.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const d = document.createElement('button');
+                d.type = 'button';
+                d.addEventListener('click', () => go(idx));
+                dots.appendChild(d);
+            });
+        }
+        buildDots();
+
+        const sync = () => {
+            slides.forEach((s, idx) => s.classList.toggle('current', idx === i));
+            Array.from(dots.children).forEach((d, idx) =>
+                d.classList.toggle('active', idx === i)
+            );
+        };
+        const go = (to) => {
+            i = (to + slides.length) % slides.length;
+            sync();
+        };
+        const next = () => go(i + 1);
+        const prev = () => go(i - 1);
+
+        prevBtn.addEventListener('click', prev);
+        nextBtn.addEventListener('click', next);
+        sync();
+
+        // autoplay
+        const autoplay = root.dataset.autoplay === 'true';
+        const interval = +root.dataset.interval || 7000;
+        let timer = null;
+        const start = () => {
+            if (!autoplay) return;
+            stop();
+            timer = setInterval(next, interval);
+        };
+        const stop = () => {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        };
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+        start();
+
+        // touch / mouse swipe
+        let x0 = 0,
+            x = 0,
+            dragging = false;
+
+        const onStart = (e) => {
+            dragging = true;
+            x0 = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
+            stop();
+        };
+        const onMove = (e) => {
+            if (!dragging) return;
+            x = ((e.touches ? e.touches[0].clientX : e.clientX) || 0) - x0;
+        };
+        const onEnd = () => {
+            if (!dragging) return;
+            dragging = false;
+            if (Math.abs(x) > 40) (x < 0 ? next() : prev());
+            x = 0;
+            start();
+        };
+
+        root.addEventListener('touchstart', onStart, { passive: true });
+        root.addEventListener('touchmove', onMove, { passive: true });
+        root.addEventListener('touchend', onEnd);
+        root.addEventListener('mousedown', onStart);
+        root.addEventListener('mousemove', onMove);
+        root.addEventListener('mouseup', onEnd);
+        root.addEventListener('mouseleave', () => { dragging = false; x = 0; });
+    }
+
+    /* =========================
+       3) Diplomas Lightbox
+       Markup: .rail > a[href] > img
+       Behaviors: next/prev, close on ✕, overlay click, Esc, swipe down
+    ========================= */
+    function initDiplomaLightbox() {
+        const rail = document.querySelector('.rail');
+        if (!rail) return;
+
+        const links = Array.from(rail.querySelectorAll('a[href]'));
+        if (!links.length) return;
+
+        // reuse if exists
+        let lb = document.querySelector('.lightbox');
+        if (!lb) {
+            lb = document.createElement('div');
+            lb.className = 'lightbox';
+            lb.innerHTML = `
+        <button class="lb-close" aria-label="Закрыть">✕</button>
+        <button class="lb-prev" aria-label="Назад">‹</button>
+        <figure><img alt=""></figure>
+        <button class="lb-next" aria-label="Вперёд">›</button>
+      `;
+            document.body.appendChild(lb);
+        }
+        const img = lb.querySelector('img');
+        const fig = lb.querySelector('figure');
+        const btnClose = lb.querySelector('.lb-close');
+        const btnPrev = lb.querySelector('.lb-prev');
+        const btnNext = lb.querySelector('.lb-next');
+
+        let k = 0;
+
+        const openLb = (idx) => {
+            k = ((idx % links.length) + links.length) % links.length;
+            img.src = links[k].href;
+            img.alt = links[k].querySelector('img')?.alt || '';
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeLb = () => {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+        const next = () => openLb(k + 1);
+        const prev = () => openLb(k - 1);
+
+        // buttons
+        btnClose.onclick = closeLb;
+        btnPrev.onclick = prev;
+        btnNext.onclick = next;
+
+        // click overlay or figure (but not image) => close
+        lb.addEventListener('click', (e) => {
+            if (e.target === lb || e.target === fig) closeLb();
+        });
+
+        // Esc / arrows
+        document.addEventListener('keydown', (e) => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') return void closeLb();
+            if (e.key === 'ArrowRight') return void next();
+            if (e.key === 'ArrowLeft') return void prev();
+        });
+
+        // touch: left/right to navigate, swipe down to close
+        let sx = 0, sy = 0, dx = 0, dy = 0, drag = false;
+        lb.addEventListener('touchstart', (e) => {
+            drag = true;
+            sx = e.touches[0].clientX;
+            sy = e.touches[0].clientY;
+        }, { passive: true });
+        lb.addEventListener('touchmove', (e) => {
+            if (!drag) return;
+            dx = e.touches[0].clientX - sx;
+            dy = e.touches[0].clientY - sy;
+        }, { passive: true });
+        lb.addEventListener('touchend', () => {
+            if (!drag) return;
+            drag = false;
+            if (Math.abs(dx) > Math.abs(dy)) {
+                if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+            } else if (dy > 60) {
+                closeLb();
+            }
+            dx = dy = 0;
+        });
+
+        // open
+        links.forEach((a, idx) => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLb(idx);
+            });
+        });
+    }
+})();
