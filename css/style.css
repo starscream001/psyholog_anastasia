@@ -260,3 +260,12 @@ html,body{max-width:100%;overflow-x:hidden}
 @media (min-width: 1024px){
     main .rail:first-of-type > a { width: 160px; }
 }
+
+/* Выровнять текст по ширине в основном контенте */
+.section p,
+.content p,
+.page p,
+.article p {
+    text-align: justify;
+    text-justify: inter-word;
+}
