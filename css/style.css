@@ -261,46 +261,11 @@ html,body{max-width:100%;overflow-x:hidden}
     main .rail:first-of-type > a { width: 160px; }
 }
 
-/* === Центрирование только для белых секций === */
-/* Вешай класс .text-on-white на контейнер нужной секции */
-.text-on-white { text-align: center; }
-
-/* Ограничиваем комфортную ширину строк и центрируем внутренности */
-.text-on-white > * {
-    max-width: 72ch;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Абзацы и заголовки */
-.text-on-white p { margin: 1.1em auto; line-height: 1.6; }
-.text-on-white h1,
-.text-on-white h2,
-.text-on-white h3,
-.text-on-white h4 { margin: 0.8em auto 0.5em; }
-
-/* Списки читаем слева, но блок списка — по центру */
-.text-on-white ul,
-.text-on-white ol {
-    display: inline-block;
-    text-align: left;
-    margin: 1.1em auto;
-}
-
-/* Таблицы: центр контейнера, содержимое слева */
-.text-on-white table { margin: 1em auto; text-align: left; }
-
-/* Формы: сам блок формы по центру, ввод — слева */
-.text-on-white form { text-align: center; margin: 1em auto; }
-.text-on-white input,
-.text-on-white textarea,
-.text-on-white select { text-align: left; }
-
-/* Прицельные исключения внутри белых секций */
-.text-on-white .align-left { text-align: left !important; }
-.text-on-white .text-narrow { max-width: 60ch !important; }
-
-/* На мобильных слегка мягче */
-@media (max-width: 768px) {
-    .text-on-white > * { max-width: 68ch; }
+/* Выровнять текст по ширине в основном контенте */
+.section p,
+.content p,
+.page p,
+.article p {
+    text-align: justify;
+    text-justify: inter-word;
 }
