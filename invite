@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Приглашение на юбилей 12 ноября — 35 лет</title>
+  <meta name="description" content="12 ноября мне исполняется 35 лет, и я очень хочу, чтобы ты отметил этот вечер вместе со мной. Загляни внутрь: детали встречи и как записаться." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Приглашение на юбилей 35 лет — 12 ноября" />
+  <meta property="og:description" content="Встречаемся 15 ноября в 18:30. Рассказываю, где собраться и как записаться, чтобы праздник сложился идеально." />
+  <meta property="og:image" content="https://example.com/assets/images/birthday-invite-cover.jpg" />
+  <meta property="og:url" content="https://example.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Юбилей 35 лет — приглашаю тебя 15 ноября" />
+  <meta name="twitter:description" content="Суббота, 15 ноября, 18:30. Вся информация о празднике и ссылка для быстрой записи." />
+  <meta name="twitter:image" content="https://example.com/assets/images/birthday-invite-cover.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070322;
+      --bg-alt: rgba(255, 255, 255, 0.08);
+      --accent: #ff78b9;
+      --accent-soft: rgba(255, 120, 185, 0.16);
+      --accent-strong: #ffcc70;
+      --text: #f8fafc;
+      --text-muted: rgba(241, 245, 249, 0.72);
+      --card-border: rgba(255, 255, 255, 0.2);
+      --radius-lg: 30px;
+      --radius-md: 20px;
+      --shadow: 0 30px 60px -24px rgba(8, 5, 33, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255, 120, 185, 0.16), transparent 55%),
+        radial-gradient(circle at 85% 20%, rgba(116, 161, 255, 0.22), transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(255, 204, 112, 0.18), transparent 40%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0) 65%),
+        radial-gradient(circle, rgba(255, 204, 112, 0.55) 0, rgba(255, 204, 112, 0) 70%);
+      background-size: 220px 220px, 320px 320px;
+      mix-blend-mode: screen;
+      opacity: 0.12;
+      transform: translate3d(0, 0, 0);
+    }
+
+    body::after {
+      animation: twinkle 14s linear infinite;
+      background-position: 40px 0, -60px 80px;
+      opacity: 0.16;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    header {
+      max-width: 1080px;
+      margin: 16px auto 0;
+      padding: 32px 24px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 16px;
+      z-index: 2;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(120deg, rgba(7, 3, 34, 0.82), rgba(27, 9, 60, 0.72));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 20px 45px -28px rgba(255, 120, 185, 0.8);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: clamp(1.4rem, 1rem + 1vw, 2.1rem);
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-shadow: 0 0 16px rgba(255, 120, 185, 0.65);
+    }
+
+    .header-note {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: clamp(0.95rem, 0.8rem + 0.4vw, 1.05rem);
+    }
+
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 24px 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: start;
+      gap: clamp(28px, 6vw, 48px);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(130deg, rgba(255, 120, 185, 0.1), rgba(116, 161, 255, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow);
+      z-index: -1;
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.4rem, 1.2rem + 3vw, 3.9rem);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .hero-copy p {
+      margin: 0 0 28px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .event-details {
+      margin: 28px 0;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255, 120, 185, 0.15), rgba(86, 132, 255, 0.15));
+      border: 1px solid var(--card-border);
+      display: grid;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-details::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 204, 112, 0.3), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .event-details h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--accent-strong);
+      text-shadow: 0 0 12px rgba(255, 204, 112, 0.45);
+    }
+
+    .event-details ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .event-details li {
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) 2fr;
+      gap: 12px;
+      align-items: start;
+      font-size: 0.98rem;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(6, 16, 40, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .event-details span {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .card {
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(6, 14, 44, 0.9), rgba(50, 29, 92, 0.82));
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: -40% -30% auto;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 120, 185, 0.35), transparent 65%);
+      z-index: 0;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(255, 120, 185, 0.24), rgba(255, 204, 112, 0.24));
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px -20px rgba(255, 120, 185, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tag::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transform: translateX(-120%);
+      animation: shimmer 8s infinite;
+      z-index: -1;
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cta button {
+      padding: 14px 0;
+      border-radius: 16px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cta button:hover,
+    .cta button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px -22px rgba(255, 120, 185, 0.9);
+    }
+
+    .cta input {
+      grid-column: 1 / -1;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(4, 12, 40, 0.65);
+      color: var(--text);
+      font-size: 1rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta input:focus {
+      outline: none;
+      border-color: rgba(255, 204, 112, 0.6);
+      box-shadow: 0 0 0 3px rgba(255, 120, 185, 0.2);
+    }
+
+    .cta button[data-rsvp='yes'] {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #19092f;
+      box-shadow: 0 20px 44px -20px rgba(255, 120, 185, 0.85);
+    }
+
+    .cta button[data-rsvp='no'] {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .cta button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .rsvp-status {
+      font-size: 0.9rem;
+      color: var(--accent-strong);
+    }
+
+    .gift-grid {
+      max-width: 1080px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(20px, 5vw, 32px);
+    }
+
+    .gift-card {
+      background: rgba(6, 14, 44, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: clamp(22px, 4vw, 28px);
+      display: grid;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .gift-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 120, 185, 0.18), rgba(116, 161, 255, 0.12));
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .gift-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gift-card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--accent-strong);
+      text-shadow: 0 0 10px rgba(255, 204, 112, 0.35);
+    }
+
+    .gift-card p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.97rem;
+    }
+
+    .gift-card strong {
+      color: var(--text);
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 48px 24px 36px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-120%);
+      }
+      50% {
+        transform: translateX(120%);
+      }
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    @keyframes twinkle {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.12;
+      }
+      50% {
+        transform: translate3d(0, -12px, 0) scale(1.03);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.12;
+      }
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 16px 20px 56px;
+      }
+
+      .header-note {
+        max-width: 420px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        text-align: center;
+        gap: 18px;
+      }
+
+      .event-details li {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .gift-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .cta button {
+        width: 100%;
+      }
+
+      header {
+        padding: 24px 20px 8px;
+        top: 12px;
+      }
+
+      .tag {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .event-details {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        line-height: 1.55;
+      }
+
+      header {
+        margin: 12px 16px 0;
+        padding: 20px 16px 6px;
+      }
+
+      .hero {
+        padding: 12px 16px 48px;
+      }
+
+      .gift-grid {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">У меня 12 ноября юбилей — 35 лет</div>
+    <p class="header-note">И я очень хочу пригласить тебя отметить этот вечер со мной.</p>
+    <div class="tag">15 ноября · 18:30</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Буду рад разделить с тобой юбилейный вечер</h1>
+      <p>
+        12 ноября праздную свои <strong>35 лет</strong>. План простой: тёплые люди, немного ностальгии, песни, которые мы
+        любим, и торт, который обязательно подожжём свечами. Хочу, чтобы ты был(а) рядом в этот момент.
+      </p>
+      <div class="event-details">
+        <h2>Что важно знать</h2>
+        <ul>
+          <li><span>Дата и время</span><div>Суббота, 15 ноября, собираемся к 18:30 (начнём вовремя, как любим).</div></li>
+          <li><span>Локация</span><div>Точную площадку подтверждаю в личном сообщении сразу, как финализирую бронь.</div></li>
+          <li><span>Программа</span><div>Задушевные тосты, пара сюрпризов от друзей и танцы до тех пор, пока ноги не скажут «хватит».</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="card" aria-labelledby="rsvp-title">
+      <span class="tag" id="rsvp-title">Отметься, пожалуйста</span>
+      <h2>Запишись, пожалуйста</h2>
+      <p>
+        Дай знать, получится ли быть. Хочу успеть подготовить места за столом и угощения для всех. Имя нужно только затем,
+        чтобы понять, кто ответил — никаких баз данных или рассылок.
+      </p>
+      <div class="cta">
+        <input type="text" id="guest-name" name="guest-name" placeholder="Имя и фамилия" autocomplete="name" />
+        <button data-rsvp="yes">Буду</button>
+        <button data-rsvp="no">Не смогу</button>
+      </div>
+      <div class="rsvp-status" aria-live="polite"></div>
+    </aside>
+  </section>
+
+  <section class="gift-grid" aria-labelledby="gift-title">
+    <article class="gift-card">
+      <h3 id="gift-title">Подарки? Сделаем остроумно</h3>
+      <p>
+        Есть китайская поговорка: <strong>«Красный конверт греет сердце сильнее любого чайника»</strong>. Если хочется
+        поучаствовать в моём следующем приключении — буду рад любому вкладу в конверте (или переводе).
+      </p>
+      <p>
+        Формат свободный: можешь принести конверт, поделиться переводом или подарить сертификат в любимый сервис.
+        Главное — твоя забота и присутствие.
+      </p>
+    </article>
+
+    <article class="gift-card">
+      <h3>Не забудь написать</h3>
+      <p>
+        Если появятся вопросы или идеи, просто напиши мне в Telegram. Контакты можно указать там же, где будут данные
+        для бота — подгляну, отвечу и всё уточню.
+      </p>
+    </article>
+  </section>
+
+  <footer>
+    Спасибо, что заглянул(а) на страницу приглашения. До встречи 15 ноября!
+  </footer>
+
+  <!-- Данные Telegram-бота: при необходимости замени значения на актуальные -->
+  <script type="application/json" id="telegram-config">
+    {
+      "botToken": "8376186963:AAH58UvfHhEqiGNsuVa-BZWmZiMLpns5alU",
+      "chatId": "642040616",
+      "threadId": "{{TELEGRAM_THREAD_ID | optional}}"
+    }
+  </script>
+  <script>
+    (function () {
+      const configElement = document.getElementById('telegram-config');
+      let config = {};
+
+      if (configElement) {
+        try {
+          config = JSON.parse(configElement.textContent);
+        } catch (error) {
+          console.warn('Не удалось распарсить конфигурацию Telegram:', error);
+        }
+      }
+
+      const buttons = document.querySelectorAll('[data-rsvp]');
+      const status = document.querySelector('.rsvp-status');
+      const nameInput = document.getElementById('guest-name');
+
+      if (!buttons.length || !config.botToken || !config.chatId) {
+        if (status) {
+          status.textContent = 'Чтобы кнопки заработали, впиши токен и chat_id бота в блок конфигурации ниже.';
+        }
+        return;
+      }
+
+      const sendRSVP = async (response, guestName) => {
+        const safeName = guestName.trim();
+        const text = `RSVP: ${response === 'yes' ? 'приду' : 'не приду'}\nГость: ${safeName}\nВремя: ${new Date().toLocaleString('ru-RU')}`;
+        const url = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
+        const payload = {
+          chat_id: config.chatId,
+          text,
+        };
+
+        if (config.threadId && config.threadId !== '{{TELEGRAM_THREAD_ID | optional}}') {
+          payload.message_thread_id = config.threadId;
+        }
+
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error('Ошибка сети');
+          }
+          return response.json();
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', async () => {
+          const responseValue = button.dataset.rsvp;
+
+          if (!nameInput || !nameInput.value.trim()) {
+            if (status) {
+              status.textContent = 'Пожалуйста, введи имя и фамилию, прежде чем отправлять ответ.';
+            }
+            if (nameInput) {
+              nameInput.focus();
+            }
+            return;
+          }
+
+          buttons.forEach((btn) => {
+            btn.disabled = true;
+          });
+
+          if (status) {
+            status.textContent = 'Отправляю ответ…';
+          }
+
+          try {
+            await sendRSVP(responseValue, nameInput.value);
+            if (status) {
+              status.textContent = responseValue === 'yes'
+                ? `Ура! Записал, что ${nameInput.value.trim()} придёт — скоро пришлю место.`
+                : `Записал, что ${nameInput.value.trim()} не получится прийти. Если планы изменятся — напиши мне!`;
+            }
+          } catch (error) {
+            if (status) {
+              status.textContent = 'Не получилось отправить ответ. Попробуй ещё раз или напиши мне напрямую.';
+            }
+            console.error(error);
+          } finally {
+            buttons.forEach((btn) => {
+              btn.disabled = false;
+            });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
