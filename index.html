@@ -220,12 +220,16 @@
             <p>Telegram: <a href="https://t.me/Anastasiya_Kelina" target="_blank" rel="noopener">@Anastasiya_Kelina</a></p>
             <p>Санкт-Петербург и онлайн. Напишите — договоримся о первой встрече.</p>
         </div>
-        <form class="card form" onsubmit="event.preventDefault(); alert('Спасибо! Я свяжусь с вами.');">
-            <label>Имя <input required type="text" name="name" placeholder="Ваше имя"></label>
-            <label>Способ связи <input required type="text" name="contact" placeholder="Телефон или Telegram"></label>
-            <label>Коротко о запросе <textarea name="msg" rows="4" placeholder="Что вас беспокоит?"></textarea></label>
+        <form id="contact-form" class="card form" method="POST" action="https://formsubmit.co/manik1990@list.ru">
+            <input type="hidden" name="_subject" value="Новая заявка с сайта психолога Анастасии">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <label>Имя <input required type="text" name="Имя" placeholder="Ваше имя"></label>
+            <label>Способ связи <input required type="text" name="Контакт" placeholder="Телефон или Telegram"></label>
+            <label>Коротко о запросе <textarea name="Сообщение" rows="4" placeholder="Что вас беспокоит?"></textarea></label>
             <button class="btn" type="submit">Отправить заявку</button>
             <p class="tiny muted">Отправляя форму, вы соглашаетесь с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>.</p>
+            <p class="tiny form-status" role="status" aria-live="polite"></p>
         </form>
     </div>
 </section>
@@ -261,6 +265,31 @@
         paint(); restart();
     })();
     (function(){const track=document.querySelector('.rail-track'); if(!track) return; let x=0; function tick(){x-=0.3;track.style.transform=`translateX(${x}px)`; if(Math.abs(x)>track.scrollWidth/3) x=0; requestAnimationFrame(tick);} requestAnimationFrame(tick);} )();
+    const contactForm=document.getElementById('contact-form');
+    if(contactForm){
+        const statusEl=contactForm.querySelector('.form-status');
+        const submitBtn=contactForm.querySelector('button[type="submit"]');
+        contactForm.addEventListener('submit',async (event)=>{
+            event.preventDefault();
+            statusEl.textContent='Отправляем сообщение…';
+            submitBtn.disabled=true;
+            submitBtn.textContent='Отправляем…';
+            try{
+                const response=await fetch(contactForm.action,{method:'POST',body:new FormData(contactForm),headers:{'Accept':'application/json'}});
+                if(response.ok){
+                    statusEl.textContent='Спасибо! Я свяжусь с вами в ближайшее время.';
+                    contactForm.reset();
+                }else{
+                    statusEl.textContent='Не удалось отправить сообщение. Попробуйте ещё раз или свяжитесь напрямую.';
+                }
+            }catch(err){
+                statusEl.textContent='Произошла ошибка соединения. Напишите, пожалуйста, по телефону или в мессенджере.';
+            }finally{
+                submitBtn.disabled=false;
+                submitBtn.textContent='Отправить заявку';
+            }
+        });
+    }
 </script>
 </body>
 </html>
