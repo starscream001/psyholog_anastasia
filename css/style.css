@@ -99,6 +99,19 @@ h3{font-size:20px;margin:0 0 8px}
 .form input:focus,.form textarea:focus{border-color:#cfe6e6;box-shadow:0 0 0 4px #e9f6f6}
 .btn{padding:12px 18px;border:0;border-radius:999px;background:var(--brand);color:#fff;font-weight:800;cursor:pointer}
 .btn:hover{filter:brightness(1.03)}
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 10px}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-weight:700;color:#fff;border:0;box-shadow:var(--shadow);transition:transform .15s ease,filter .15s}
+.contact-btn:focus-visible{outline:3px solid rgba(255,255,255,.6);outline-offset:2px}
+.contact-btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.contact-btn--telegram{background:#27a5e7}
+.contact-btn--vk{background:#0077ff}
+.contact-btn--whatsapp{background:#25d366;color:#053d1c}
+.contact-btn--max{background:#ff004d}
+.contact-btn svg{width:18px;height:18px;fill:currentColor}
+.seo-card{background:linear-gradient(135deg,#f7fbfb,#ffffff);padding:32px;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+.seo-card h2{margin-bottom:12px}
+.seo-text{font-size:18px;line-height:1.7;margin:0}
+.seo-text strong{color:var(--brand-2)}
 
 /* Футер */
 .site-footer{border-top:1px solid var(--line);background:#fff}
