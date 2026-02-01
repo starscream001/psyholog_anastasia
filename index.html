@@ -201,7 +201,6 @@
                 <img src="images/cert/food_kor_cert.png" alt="">
                 <img src="images/cert/ippo_cert.jpeg" alt="">
                 <img src="images/cert/family_cert.jpeg" alt="">
-                <img src="images/cert/med_cert.jpeg" alt="">
             </div>
         </div>
         <p style="margin-top:12px"><a class="btn" href="education.html">Подробнее об образовании &rarr;</a></p>
@@ -258,9 +257,6 @@
                 </a>
                 <a class="contact-btn contact-btn--vk" href="https://vk.com/id1085333913" target="_blank" rel="noopener" aria-label="Написать во ВКонтакте">
                     ВКонтакте
-                </a>
-                <a class="contact-btn contact-btn--whatsapp" href="https://wa.me/79213003055" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
-                    WhatsApp
                 </a>
                 <a class="contact-btn contact-btn--max"
                    href="https://max.ru/u/f9LHodD0cOK7bZBa4fLvrL4RfQsbxNbunbJrT2ZtutwN1X1N1WUZcGC05J8"
@@ -335,7 +331,7 @@
                     body:JSON.stringify({chat_id:chatId,text})
                 });
                 if(response.ok){
-                    statusEl.textContent='Спасибо! Я свяжусь с вами в ближайшее время.';
+                    statusEl.textContent='Спасибо! Я свяжусь с Вами в ближайшее время.';
                     contactForm.reset();
                 }else{
                     statusEl.textContent='Не удалось отправить сообщение. Попробуйте ещё раз или свяжитесь напрямую.';
