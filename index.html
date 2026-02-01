@@ -271,10 +271,7 @@
             </div>
             <p>Санкт-Петербург и онлайн. Напишите — договоримся о первой встрече.</p>
         </div>
-        <form id="contact-form" class="card form" method="POST" action="https://formsubmit.co/a79213003055@yandex.ru">
-            <input type="hidden" name="_subject" value="Новая заявка с сайта психолога Анастасии">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
+        <form id="contact-form" class="card form" method="POST" action="https://api.telegram.org/botPASTE_TELEGRAM_BOT_API_TOKEN/sendMessage" data-chat-id="PASTE_TELEGRAM_CHAT_ID">
             <label>Имя <input required type="text" name="Имя" placeholder="Ваше имя"></label>
             <label>Способ связи <input required type="text" name="Контакт" placeholder="Телефон или Telegram"></label>
             <label>Коротко о запросе <textarea name="Сообщение" rows="4" placeholder="Что вас беспокоит?"></textarea></label>
@@ -320,13 +317,23 @@
     if(contactForm){
         const statusEl=contactForm.querySelector('.form-status');
         const submitBtn=contactForm.querySelector('button[type="submit"]');
+        const chatId=contactForm.dataset.chatId;
         contactForm.addEventListener('submit',async (event)=>{
             event.preventDefault();
             statusEl.textContent='Отправляем сообщение…';
             submitBtn.disabled=true;
             submitBtn.textContent='Отправляем…';
             try{
-                const response=await fetch(contactForm.action,{method:'POST',body:new FormData(contactForm),headers:{'Accept':'application/json'}});
+                const formData=new FormData(contactForm);
+                const name=formData.get('Имя');
+                const contact=formData.get('Контакт');
+                const message=formData.get('Сообщение') || 'Без сообщения';
+                const text=`Новая заявка с сайта\nИмя: ${name}\nКонтакт: ${contact}\nСообщение: ${message}`;
+                const response=await fetch(contactForm.action,{
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({chat_id:chatId,text})
+                });
                 if(response.ok){
                     statusEl.textContent='Спасибо! Я свяжусь с вами в ближайшее время.';
                     contactForm.reset();
